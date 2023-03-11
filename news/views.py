@@ -80,7 +80,3 @@ class DeleteView(generic.DeleteView):
     #form_class = ConcatForm
     template_name = 'news/contact_confirm_delete.html'
     success_url = reverse_lazy('news:list')
-
-def develop_tips(request):
-    context = {}
-    return render(request, 'news/develop_tips.html', context)
