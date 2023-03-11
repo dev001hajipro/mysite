@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<a href="{% url 'news:create' %}">新規作成画面</a>
+
+{% if contact_list %}
+    {% for c in contact_list %}
+        <li><a href="{% url 'news:detail' c.id %}">{{ c }}</a>
+            - <a href="{% url 'news:update' c.id %}">{{ c }}</a>
+            - <a href="{% url 'news:delete' c.id %}">削除</a>
+        </li>
+    {% endfor %}
+{% else %}
+    <p>not found list.</p>
+{% endif %}
+
+{% endblock content %}

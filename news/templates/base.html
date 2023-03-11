@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,user-scalable=yes">
+    <link rel="stylesheet" href="{% static 'news/reset.css' %}">
+    <style>
+        header {
+            background-color: #3379b7;
+            padding: 10pt;
+            color:#fbf8f1;
+        }
+        h1 {
+            color:#fbf8f1;
+        }
+        body {
+            background-color: #fbf8f1;
+        }
+        footer {
+            background-color: #3379b7;
+            padding: 5pt;
+        }
+    </style>
+    
+    {% block head %}
+    {% endblock head %}
+
+</head>
+<body>
+{% block header %}
+<header>
+<h1>コンタクトアプリ</h1>
+</header>
+{% endblock header %}
+
+{% block content %}{% endblock content %}
+
+{% block footer %}
+<footer>
+&copy;凸凹株式会社
+</footer>
+{% endblock footer %}
+<body></html>

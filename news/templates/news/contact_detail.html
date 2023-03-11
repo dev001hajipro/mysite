@@ -1,0 +1,7 @@
+<a href={% url 'news:list' %}>Goto list</a>
+
+<h1>detail</h1>
+<p>subject:{{ object.subject }}</p>
+<p>message:{{ object.message }}</p>
+<p>sender:{{ object.sender }}</p>
+<p>pub_date:{{ object.pub_date }}</p>

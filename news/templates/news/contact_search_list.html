@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}
+<header>
+<h1>検索一覧画面</h1>
+</header>
+{% endblock header %}
+
+
+{% block content %}
+
+<a href="{% url 'news:create' %}">新規作成画面</a>
+<a href="{% url 'news:list' %}">一覧画面</a>
+
+<form method="get">
+    <input type="text" id="query" name="query" value="{{ request.GET.query }}" placeholder="Search keyword"></input>
+    <input type="submit" value="検索"></input>
+</form>
+
+{% if contact_list %}
+    {% for c in contact_list %}
+        <li><a href="{% url 'news:detail' c.id %}">{{ c }}</a>
+            - <a href="{% url 'news:update' c.id %}">{{ c }}</a>
+            - <a href="{% url 'news:delete' c.id %}">削除</a>
+        </li>
+    {% endfor %}
+{% else %}
+    <p>not found list.</p>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+/* https://qiita.com/TK-C/items/dbfc6f84e1693be5dbb9 */
+
+html,
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  line-height: 1.0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  border: none;
+  vertical-align: bottom;
+  max-width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-size: 1.6rem;
+  font-family:"游ゴシック",YuGothic,"Hiragino Kaku Gothic ProN",Meiryo, sans-serif;
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+<style>
+    ul {
+        margin: 5pt;
+        padding: 5pt;
+    }
+</style>
+{% endblock head %}
+
+
+{% block header %}
+<header>
+<h1>開発Tips</h1>
+</header>
+{% endblock header %}
+
+{% block content %}
+
+<ul>
+    <li><del>breakpoint</del></li>
+    <li><del>テスト追加</del></li>
+    <li>検索フィルター</li>
+    <li>ユーザー毎データ</li>
+    <li><del>use template and make the header and footer section.</del></li>
+</ul>
+
+<ul>
+    <li><a href="https://github.com/wsvincent/awesome-django">https://github.com/wsvincent/awesome-django</a></li>
+</ul>
+{% endblock content %}
+
+
+{% block footer %}
+<footer>
+&copy;xyz
+</footer>
+{% endblock footer %}
+
