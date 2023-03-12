@@ -13,3 +13,4 @@ Django4学習用のサンドボックス
 ## 参考情報
 
 - [https://github.com/wsvincent/awesome-django](awesome-django)
+- [https://medium.com/djangotube/django-roles-groups-and-permissions-introduction-a54d1070544](Django Roles, Groups, and Permissions Introduction)
