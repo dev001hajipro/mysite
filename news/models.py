@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 
 class Reporter(models.Model):
     full_name = models.CharField(max_length=255)
@@ -16,12 +19,21 @@ class Article(models.Model):
     def __str__(self):
         return self.headline
 
-
 class Contact(models.Model):
     subject = models.TextField()
     message = models.TextField()
     sender = models.EmailField()
     pub_date = models.DateTimeField()
 
+    created_by = models.ForeignKey(
+        #get_user_model(),
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        )
+
     def __str__(self) -> str:
         return self.subject
+
+class MyUser(AbstractUser):
+    pass

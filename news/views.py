@@ -41,10 +41,10 @@ class SearchListView(LoginRequiredMixin, generic.ListView):
         query = self.request.GET.get('query')
         if query:
             return Contact.objects.filter(
-                Q(subject__contains=query)
-                | Q(message__contains=query))
+                (Q(subject__contains=query)
+                | Q(message__contains=query)) & Q(created_by=self.request.user))
         else:
-            return Contact.objects.all()
+            return Contact.objects.filter(created_by=self.request.user)
 
 
 class CreateView(LoginRequiredMixin, generic.CreateView):
