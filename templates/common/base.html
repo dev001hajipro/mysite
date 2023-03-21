@@ -1,0 +1,30 @@
+{% load django_bootstrap5 %}
+
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta char="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title bg-primary text-white">{% block title %}{% endblock title %}</div>
+            {% if user.is_authenticated %}
+                <p>{{ user.username }}でログイン中</p>
+            {% else %}
+                <p>ログインしてません。</p>
+            {% endif %}
+        </header>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

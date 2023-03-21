@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Article, Contact
 from .forms import ConcatForm
@@ -25,12 +26,12 @@ def article_detail(request, year, month, pk):
     return render(request, 'news/article_detail.html', context)
 
 
-class ListView(generic.ListView):
+class ListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return Contact.objects.order_by('-pub_date')
 
 
-class SearchListView(generic.ListView):
+class SearchListView(LoginRequiredMixin, generic.ListView):
     """検索画面と一覧画面"""
     template_name = "news/contact_search_list.html"
 
@@ -46,19 +47,19 @@ class SearchListView(generic.ListView):
             return Contact.objects.all()
 
 
-class CreateView(generic.CreateView):
+class CreateView(LoginRequiredMixin, generic.CreateView):
     """連作先作成画面"""
     form_class = ConcatForm
     template_name = 'news/contact_form.html'
     success_url = reverse_lazy('news:list')
 
 
-class DetailView(generic.DetailView):
+class DetailView(LoginRequiredMixin, generic.DetailView):
     model = Contact
     template_name = 'news/contact_detail.html'
 
 
-class UpdateView(generic.UpdateView):
+class UpdateView(LoginRequiredMixin, generic.UpdateView):
     # https://stackoverflow.com/questions/53692418/django-updateview-misses-queryset
     # ??? ContactFormクラス内にMetaクラスがあり、そこでmodelを記述しているが
     # ここでも記述しないといけない?
@@ -72,7 +73,7 @@ class UpdateView(generic.UpdateView):
     success_url = reverse_lazy('news:list')
 
 
-class DeleteView(generic.DeleteView):
+class DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Contact
     # DeleteViewではフォーム(form_class)を使わない。
     # つまり、generic.DeleteViewはUpdateViewのようにModelFormに対応していない。
