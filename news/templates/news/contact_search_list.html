@@ -1,4 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'common/base.html' %}
+
+{% load django_bootstrap5 %}
 
 {% load static %}
 
@@ -14,15 +16,39 @@
 <a href="{% url 'news:create' %}">新規作成画面</a>
 <a href="{% url 'news:list' %}">一覧画面</a>
 
-<form method="get">
-    <input type="text" id="query" name="query" value="{{ request.GET.query }}" placeholder="Search keyword"></input>
-    <input type="submit" value="検索"></input>
-</form>
+
+{% url 'news:create' as var_new_create %}
+{% bootstrap_button button_type="link" content="新規作成" href=var_new_create %}
+
+{% url 'news:search_list' as var_search_list %}
+{% bootstrap_button button_type="link" content="新規作成" href=var_search_list %}
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+    </div>
+  </div>
+  
+<div class="container">
+            <form method="get" class="form">
+                <input type="text" id="query" name="query" value="{{ request.GET.query }}" placeholder="Search keyword"></input>
+                <input type="submit" value="検索" class="btn btn-primary"></input>
+            </form>
+</div>
 
 {% if contact_list %}
     {% for c in contact_list %}
-        <li><a href="{% url 'news:detail' c.id %}">{{ c }}</a>
-            - <a href="{% url 'news:update' c.id %}">{{ c }}</a>
+        <li>
+            - <a href="{% url 'news:detail' c.id %}">{{ c }}</a>
+            - <a href="{% url 'news:update' c.id %}">更新{{ c }}</a>
             - <a href="{% url 'news:delete' c.id %}">削除</a>
         </li>
     {% endfor %}

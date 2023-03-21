@@ -18,6 +18,7 @@ Django4学習用のサンドボックス
 ## UIでdjango-bootstrap5を使う
 
 - [https://github.com/zostera/django-bootstrap5](https://github.com/zostera/django-bootstrap5)
+- [https://n-guitar.hatenablog.com/entry/2021/01/11/204659](【Django3.1】Djangoで作成したアプリケーションにBootstrap5-beta1を導入し、見た目を整える。)
 
 ### アクセス制限の調査
 
