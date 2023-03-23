@@ -7,6 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Article, Contact
 from .forms import ConcatForm
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def year_archive(request, year):
     ls = Article.objects.filter(pub_date__year=year)
@@ -36,8 +39,8 @@ class SearchListView(LoginRequiredMixin, generic.ListView):
     template_name = "news/contact_search_list.html"
 
     def get_queryset(self):
-        print('query=', self.kwargs.get('query'))
-        print("GET.get('query')=", self.request.GET.get('query'))
+        logger.debug(f"self.kwargs.get('query')     ={ self.kwargs.get('query') }")
+        logger.debug(f"self.request.GET.get('query')={ self.request.GET.get('query') }")
         query = self.request.GET.get('query')
         if query:
             return Contact.objects.filter(
@@ -51,7 +54,7 @@ class CreateView(LoginRequiredMixin, generic.CreateView):
     """連作先作成画面"""
     form_class = ConcatForm
     template_name = 'news/contact_form.html'
-    success_url = reverse_lazy('news:list')
+    success_url = reverse_lazy('news:search_list')
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
@@ -70,7 +73,7 @@ class UpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Contact
     form_class = ConcatForm
     template_name = 'news/contact_update_form.html'
-    success_url = reverse_lazy('news:list')
+    success_url = reverse_lazy('news:search_list')
 
 
 class DeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -80,4 +83,4 @@ class DeleteView(LoginRequiredMixin, generic.DeleteView):
     # そのため、form_classを用意してHTMLのformで表示しようとしても、フィールドは空になる。
     #form_class = ConcatForm
     template_name = 'news/contact_confirm_delete.html'
-    success_url = reverse_lazy('news:list')
+    success_url = reverse_lazy('news:search_list')

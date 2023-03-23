@@ -1,8 +1,18 @@
-<a href={% url 'news:search_list' %}>Goto list</a>
+{% extends 'common/base.html' %}
 
-<h1>Create</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">登録</button>
-</form>
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}<p class="fs-2 fw-bold">更新</p>{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="form-control btn btn-primary" type="submit">更新</button>
+    </form>
+</div>
+
+{% endblock content %}

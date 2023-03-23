@@ -1,30 +1,62 @@
+{% load static %}
 {% load django_bootstrap5 %}
 
 <!doctype html>
-{% load static %}
-<html lang="ja">
+<html lang="ja" class="h-100">
 <head>
-    <meta char="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>コンタクト</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
     <div class="container">
-        <header>
-            <div class="title bg-primary text-white">{% block title %}{% endblock title %}</div>
+        <header class="d-flex flex-wrap align-items-center 
+            justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <i class="bi bi-unity" style="font-size: 2rem;"></i>
+                <span class="fs-4">Simple header</span>
+            </a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a class="nav-link" href="{% url 'news:search_list' %}">検索一覧へ</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'news:create' %}">新規作成</a>
+                </li>
+            </ul>
+            <div class="col-md-3 text-end">
+                <a class="btn btn-outline-primary me-2" href="{% url 'news:create' %}">新規作成</a>
+                <a class="btn btn-outline-primary " href="{% url 'news:create' %}">TEST</a>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        {% block title %}{% endblock title %}
+    </div>
+
+    <div class="container">
+        <div>
             {% if user.is_authenticated %}
                 <p>{{ user.username }}でログイン中</p>
             {% else %}
                 <p>ログインしてません。</p>
             {% endif %}
-        </header>
-
-        <div class="content">
-            {% block content %}{% endblock %}
         </div>
     </div>
+
+    {% comment "content" %} {% endcomment %}
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+</main>
+    <footer class="footer mt-auto bg-light py-3">
+        <div class="container">
+            <span>&copy;helloworld</span>
+        </div>
+    </footer>
 </body>
 </html>

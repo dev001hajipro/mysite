@@ -1,8 +1,16 @@
-<a href={% url 'news:search_list' %}>Goto list</a>
+{% extends 'common/base.html' %}
 
-<h1>de</h1>
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}<p class="fs-2 fw-bold"></p>{% endblock title %}
+
+{% block content %}
+
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
     {{ object.subject }}
     <input type="submit" value="delete">
 </form>
+
+{% endblock content %}
