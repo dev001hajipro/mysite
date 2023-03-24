@@ -2,10 +2,6 @@
 
 Django4学習用のサンドボックス
 
-## TODO
-
-- ユーザー毎にデータ登録し、他人はデータを閲覧できない。
-
 ## 参考情報
 
 - [https://github.com/wsvincent/awesome-django](awesome-django)
